@@ -1,0 +1,40 @@
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.autoupdate.resources
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.MainForm.resources
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.Properties.Resources.resources
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.GenerateResource.Cache
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.updateinfo.resources
+E:\#.NET开发 2021\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csprojResolveAssemblyReference.cache
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.autoupdate.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.updateinfo.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.MainForm.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.Properties.Resources.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.GenerateResource.Cache
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csprojResolveAssemblyReference.cache
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.autoupdate.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.updateinfo.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.MainForm.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.Properties.Resources.resources
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.GenerateResource.Cache
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+C:\Users\GIGABYTE\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.autoupdate.resources
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.updateinfo.resources
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.MainForm.resources
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.Properties.Resources.resources
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.GenerateResource.cache
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.CoreCompileInputs.cache
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csprojAssemblyReference.cache
