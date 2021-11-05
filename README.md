@@ -4,7 +4,7 @@
 # 运行环境
 **程序需要在安装有 .Net Framework 4.0 的 Windows 10 系统上运行。**
 
-**(微软已经停止对 Windows 7 的支持，并且程序本身的界面设计只支持在 Windows 10 上运行)**
+**（微软已经停止对 Windows 7 的支持，并且程序本身的界面设计只支持在 Windows 10 上运行）**
 
 > **Releases中提供了 .Net Framework 4.0 的安装包和下载地址。**
 
