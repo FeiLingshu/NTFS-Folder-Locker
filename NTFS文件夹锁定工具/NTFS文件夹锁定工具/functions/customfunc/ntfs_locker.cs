@@ -1,5 +1,4 @@
-﻿// 引用基础命名空间
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using System;
 using System.IO;
 using System.Security.AccessControl;
@@ -16,8 +15,8 @@ namespace NTFS_Folder_Locker.functions.customfunc
         /// <returns>指示操作是否执行成功</returns>
         internal static bool encode(string path)
         {
-            deleteblocker(path, handleway.creat);
-            bool report = MARchange(path, authority.deny);
+            bool report = deleteblocker(path, handleway.creat);
+            if (report) report = MARchange(path, authority.deny);
             return report;
         }
         /// <summary>
@@ -28,7 +27,7 @@ namespace NTFS_Folder_Locker.functions.customfunc
         internal static bool decode(string path)
         {
             bool report = MARchange(path, authority.allow);
-            if (report) deleteblocker(path, handleway.delete);
+            if (report) report = deleteblocker(path, handleway.delete);
             return report;
         }
         /// <summary>
@@ -67,15 +66,8 @@ namespace NTFS_Folder_Locker.functions.customfunc
             deny, // 拒绝标志
         }
         // 防删除文件夹自适应操作内部方法
-        private static void deleteblocker(string path, handleway flag)
+        private static bool deleteblocker(string path, handleway flag)
         {
-            if (flag != handleway.creat && flag != handleway.delete)
-                throw new NotImplementedException(
-                    "\n[应用程序内部已知错误]无法执行权限调整操作！" +
-                    "\n命名空间：NTFS_Folder_Locker.functions.customfunc" +
-                    "\n类：ntfs_locker" +
-                    "\n方法：deleteblocker(string path, handleway flag)" +
-                    "\n详细信息：(handleway)flag的值不在允许范围内！");
             string cmdline = null;
             string filepath = "\"" + path + "\\" + "DELETEBLOCKER".MD5_code() + "..\\\"";
             switch (flag)
@@ -89,22 +81,23 @@ namespace NTFS_Folder_Locker.functions.customfunc
                 default:
                     break;
             }
-            Interaction.Shell(cmdline, AppWinStyle.Hide, true, -1);
+            try
+            {
+                Interaction.Shell(cmdline, AppWinStyle.Hide, true, -1);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
         // 调整文件夹权限的内部方法
         private static bool MARchange(string path, authority flag)
         {
-            if (flag != authority.allow && flag != authority.deny)
-                throw new NotImplementedException(
-                    "\n[应用程序内部已知错误]无法执行权限调整操作！" +
-                    "\n命名空间：NTFS_Folder_Locker.functions.customfunc" +
-                    "\n类：ntfs_locker" +
-                    "\n方法：MARchange(string path, authority flag)" +
-                    "\n详细信息：(authority)flag的值不在允许范围内！");
-            DirectoryInfo dir_info = new DirectoryInfo(path);
-            DirectorySecurity dir_security = dir_info.GetAccessControl();
             try
             {
+                DirectoryInfo dir_info = new DirectoryInfo(path);
+                DirectorySecurity dir_security = dir_info.GetAccessControl();
                 FileSystemAccessRule everyone_allow =
                     new FileSystemAccessRule("Everyone",
                         FileSystemRights.FullControl,

@@ -1,5 +1,4 @@
-﻿// 引用基础命名空间
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 
 namespace NTFS_Folder_Locker.functions

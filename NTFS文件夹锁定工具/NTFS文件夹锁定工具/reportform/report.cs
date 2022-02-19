@@ -1,10 +1,8 @@
-﻿// 引用基础命名空间
+﻿using NTFS_Folder_Locker.functions;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-// 引用附加命名空间
-using NTFS_Folder_Locker.functions;
 
 namespace NTFS_Folder_Locker.reportform
 {

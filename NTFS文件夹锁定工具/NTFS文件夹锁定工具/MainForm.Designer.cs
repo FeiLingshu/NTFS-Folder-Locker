@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel_title_detail = new System.Windows.Forms.Panel();
+            this.picturebox_morebutton = new System.Windows.Forms.PictureBox();
             this.label_path = new System.Windows.Forms.Label();
             this.label_break_01 = new System.Windows.Forms.Label();
             this.picturebox_closebutton = new System.Windows.Forms.PictureBox();
@@ -53,6 +54,7 @@
             this.timer_password = new System.Windows.Forms.Timer(this.components);
             this.picturebox_password = new System.Windows.Forms.PictureBox();
             this.panel_title_detail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picturebox_morebutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_closebutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_icon)).BeginInit();
             this.panel_password.SuspendLayout();
@@ -65,6 +67,7 @@
             // 
             this.panel_title_detail.BackColor = System.Drawing.Color.Transparent;
             this.panel_title_detail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel_title_detail.Controls.Add(this.picturebox_morebutton);
             this.panel_title_detail.Controls.Add(this.label_path);
             this.panel_title_detail.Controls.Add(this.label_break_01);
             this.panel_title_detail.Controls.Add(this.picturebox_closebutton);
@@ -78,6 +81,22 @@
             this.panel_title_detail.Size = new System.Drawing.Size(300, 73);
             this.panel_title_detail.TabIndex = 0;
             // 
+            // picturebox_morebutton
+            // 
+            this.picturebox_morebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picturebox_morebutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.picturebox_morebutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.picturebox_morebutton.ErrorImage = null;
+            this.picturebox_morebutton.Image = global::NTFS_Folder_Locker.Properties.Resources.more;
+            this.picturebox_morebutton.InitialImage = null;
+            this.picturebox_morebutton.Location = new System.Drawing.Point(243, 43);
+            this.picturebox_morebutton.Margin = new System.Windows.Forms.Padding(0);
+            this.picturebox_morebutton.Name = "picturebox_morebutton";
+            this.picturebox_morebutton.Size = new System.Drawing.Size(48, 20);
+            this.picturebox_morebutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picturebox_morebutton.TabIndex = 2;
+            this.picturebox_morebutton.TabStop = false;
+            // 
             // label_path
             // 
             this.label_path.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -87,7 +106,7 @@
             this.label_path.Location = new System.Drawing.Point(9, 43);
             this.label_path.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.label_path.Name = "label_path";
-            this.label_path.Size = new System.Drawing.Size(282, 20);
+            this.label_path.Size = new System.Drawing.Size(228, 20);
             this.label_path.TabIndex = 0;
             this.label_path.Tag = "路径：未获取到合法路径 ...";
             this.label_path.Text = "路径：未获取到合法路径 ...";
@@ -410,10 +429,11 @@
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NTFS文件夹锁定工具";
             this.TopMost = true;
             this.panel_title_detail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picturebox_morebutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_closebutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_icon)).EndInit();
             this.panel_password.ResumeLayout(false);
@@ -449,6 +469,7 @@
         private System.Windows.Forms.PictureBox picturebox_copyright;
         internal System.Windows.Forms.Label label_readme;
         private System.Windows.Forms.Timer timer_password;
+        private System.Windows.Forms.PictureBox picturebox_morebutton;
     }
 }
 

@@ -1,5 +1,4 @@
-﻿// 引用基础命名空间
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 
 namespace NTFS_Folder_Locker.functions
@@ -48,13 +47,7 @@ namespace NTFS_Folder_Locker.functions
                     MessageBeep(0x00000040U);
                     break;
                 default:
-                    throw new NotImplementedException(
-                        "\n[应用程序内部已知错误]无法生成指定的系统声音！" +
-                        "\n命名空间：NTFS_Folder_Locker.functions" +
-                        "\n类：msgbeep" +
-                        "\n方法：beep(uType uType)" +
-                        "\n详细信息：(uType)uType的值不在枚举范围内！");
-                    //break;
+                    throw new NotImplementedException("无法生成指定的系统声音！");
             }
         }
     }

@@ -26,3 +26,13 @@ C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁
 C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.exe
 C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.pdb
 C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.csprojAssemblyReference.cache
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\bin\Debug\NTFS文件夹锁定工具.exe
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\bin\Debug\NTFS文件夹锁定工具.pdb
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS_Folder_Locker.MainForm.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS_Folder_Locker.Properties.Resources.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS_Folder_Locker.reportform.report.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.csproj.GenerateResource.cache
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.csproj.CoreCompileInputs.cache
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.exe
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS文件夹锁定工具.pdb
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具\NTFS文件夹锁定工具\obj\Debug\NTFS_Folder_Locker.moreform.more.resources

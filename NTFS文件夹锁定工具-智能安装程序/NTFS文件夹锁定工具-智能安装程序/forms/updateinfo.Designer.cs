@@ -150,9 +150,13 @@
             System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("重制UI界面，优化用户交互体验");
             System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("版本 5.1.2.1", new System.Windows.Forms.TreeNode[] {
             treeNode63});
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("第 5 次版本迭代", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("新增批量处理功能，并添加了历史记录");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("版本 5.1.3.1", new System.Windows.Forms.TreeNode[] {
+            treeNode65});
+            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("第 5 次版本迭代", new System.Windows.Forms.TreeNode[] {
             treeNode62,
-            treeNode64});
+            treeNode64,
+            treeNode66});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(updateinfo));
             this.label_tips = new System.Windows.Forms.Label();
             this.treeview_list = new System.Windows.Forms.TreeView();
@@ -410,16 +414,23 @@
             treeNode64.Name = "5121";
             treeNode64.Text = "版本 5.1.2.1";
             treeNode64.ToolTipText = "添加了1个新功能";
-            treeNode65.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            treeNode65.Name = "A05";
-            treeNode65.Text = "第 5 次版本迭代";
-            treeNode65.ToolTipText = "1次核心升级，1个新功能，0次bug修复";
+            treeNode65.ForeColor = System.Drawing.Color.CornflowerBlue;
+            treeNode65.Name = "01";
+            treeNode65.Text = "新增批量处理功能，并添加了历史记录";
+            treeNode66.ForeColor = System.Drawing.Color.CornflowerBlue;
+            treeNode66.Name = "5131";
+            treeNode66.Text = "版本 5.1.3.1";
+            treeNode66.ToolTipText = "添加了1个新功能";
+            treeNode67.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            treeNode67.Name = "A05";
+            treeNode67.Text = "第 5 次版本迭代";
+            treeNode67.ToolTipText = "1次核心升级，2个新功能，0次bug修复";
             this.treeview_list.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode9,
             treeNode18,
             treeNode49,
             treeNode60,
-            treeNode65});
+            treeNode67});
             this.treeview_list.ShowNodeToolTips = true;
             this.treeview_list.Size = new System.Drawing.Size(416, 149);
             this.treeview_list.TabIndex = 0;

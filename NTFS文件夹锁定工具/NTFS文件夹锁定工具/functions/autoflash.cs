@@ -1,5 +1,4 @@
-﻿// 引用基础命名空间
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
@@ -69,21 +68,11 @@ namespace NTFS_Folder_Locker.functions
             {
                 if (_start < 0 || _start > 1)
                 {
-                    throw new NotImplementedException(
-                        "\n[应用程序内部已知错误]无法配置动画参数！" +
-                        "\n命名空间：NTFS_Folder_Locker.functions" +
-                        "\n类：autoflash" +
-                        "\n方法：flashinfo(int startopacity, int endopacity)" +
-                        "\n详细信息：(int)startopacity的值不在允许范围内！");
+                    throw new NotImplementedException("无法配置窗体动画相关参数！");
                 }
                 if (_end < 0 || _end > 1)
                 {
-                    throw new NotImplementedException(
-                        "\n[应用程序内部已知错误]无法配置动画参数！" +
-                        "\n命名空间：NTFS_Folder_Locker.functions" +
-                        "\n类：autoflash" +
-                        "\n方法：flashinfo(int startopacity, int endopacity)" +
-                        "\n详细信息：(int)endopacity的值不在允许范围内！");
+                    throw new NotImplementedException("无法配置窗体动画相关参数！");
                 }
                 window = _window;
                 start = _start;
@@ -95,16 +84,6 @@ namespace NTFS_Folder_Locker.functions
         // 动画效果实现线程
         private void flash(object e)
         {
-            if (e.GetType() != typeof(flashinfo))
-            {
-                throw new NotImplementedException(
-                       "\n[应用程序内部已知错误]无法配置动画参数！" +
-                       "\n命名空间：NTFS_Folder_Locker.functions" +
-                       "\n类：autoflash" +
-                       "\n方法：flash(object e)" +
-                       "\n详细信息：(object)e的值无法被解析！");
-                //return;
-            }
             flashinfo info = (flashinfo)e;
             int step = 0;
             if (info.start < info.end)
@@ -117,13 +96,7 @@ namespace NTFS_Folder_Locker.functions
             }
             if (step == 0)
             {
-                throw new NotImplementedException(
-                       "\n[应用程序内部已知错误]无法配置动画参数！" +
-                       "\n命名空间：NTFS_Folder_Locker.functions" +
-                       "\n类：autoflash" +
-                       "\n方法：flash(object e)" +
-                       "\n详细信息：(int)start和(int)end的值不能相等！");
-                //return;
+                throw new NotImplementedException("无法配置窗体动画相关参数！");
             }
             d_reflash _reflash = new d_reflash(reflash);
             switch (step)

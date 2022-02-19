@@ -1,5 +1,4 @@
-﻿// 引用基础命名空间
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -56,12 +55,7 @@ namespace NTFS_Folder_Locker.functions.customfunc
             }
             catch (EncoderFallbackException)
             {
-                throw new NotImplementedException(
-                        "\n[应用程序内部已知错误]无法获取指定文本的UTF-8编码！" +
-                        "\n命名空间：NTFS_Folder_Locker.functions.customfunc" +
-                        "\n类：byte_encryption" +
-                        "\n方法：(byte[])getstringbyte(string str)" +
-                        "\n详细信息：(string)str的值不在UTF-8编码范围内！");
+                throw new NotImplementedException("无法获取指定文本的UTF-8编码！");
             }
             return bytes;
         }

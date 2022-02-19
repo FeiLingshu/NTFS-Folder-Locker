@@ -10,6 +10,14 @@ namespace NTFS_Folder_Locker_Installer.functions.main_function
     internal static class installer
     {
         /// <summary>
+        /// 保存更新的需求状态
+        /// <para>
+        /// 已安装且版本为不兼容旧版本时为true
+        /// </para>
+        /// </summary>
+        internal static bool needupdate = false;
+
+        /// <summary>
         /// 保存最后一次错误的错误信息
         /// </summary>
         internal static string lusterror = null;
@@ -105,14 +113,13 @@ namespace NTFS_Folder_Locker_Installer.functions.main_function
                 associatedprogramkey.Close();
                 rightcommondkey.Close();
                 shell.Close();
-                return true;
             }
             catch (Exception exception)
             {
                 lusterror = exception.Message;
                 return false;
-                // throw;
             }
+            return overlay(name, info, path);
         }
 
         /// <summary>
@@ -144,13 +151,79 @@ namespace NTFS_Folder_Locker_Installer.functions.main_function
                         break;
                     }
                 }
+            }
+            catch (Exception exception)
+            {
+                lusterror = exception.Message;
+                return false;
+            }
+            if (!needupdate)
+            {
+                lusterror = null;
+                try
+                {
+                    RegistryKey root = Registry.ClassesRoot;
+                    RegistryKey shell = root.OpenSubKey("Directory\\Background\\shell", true);
+                    if (shell == null) // 为保证runs列表为空不是由于目录尚未创建引起的，执行以下操作
+                    {
+                        RegistryKey[] keys = new RegistryKey[3];
+                        keys[0] = root.CreateSubKey("Directory");
+                        keys[1] = keys[0].CreateSubKey("Background");
+                        keys[2] = keys[1].CreateSubKey("shell");
+                        shell = keys[2];
+                    }
+                    string[] keynames = shell.GetSubKeyNames();
+                    foreach (string keyname in keynames)
+                    {
+                        if (keyname.ToUpper() == name.ToUpper())
+                        {
+                            shell.DeleteSubKeyTree(name);
+                            shell.Close();
+                            break;
+                        }
+                    }
+                }
+                catch (Exception exception)
+                {
+                    lusterror = exception.Message;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        internal static bool overlay(string name, string info, string path)
+        {
+            lusterror = null;
+            try
+            {
+                RegistryKey root = Registry.ClassesRoot;
+                RegistryKey shell = root.OpenSubKey("Directory\\Background\\shell", true);
+                if (shell == null) // 为保证runs列表为空不是由于目录尚未创建引起的，执行以下操作
+                {
+                    RegistryKey[] keys = new RegistryKey[3];
+                    keys[0] = root.CreateSubKey("Directory");
+                    keys[1] = keys[0].CreateSubKey("Background");
+                    keys[2] = keys[1].CreateSubKey("shell");
+                    shell = keys[2];
+                }
+                RegistryKey rightcommondkey = shell.CreateSubKey(name);
+                rightcommondkey.SetValue("icon", "\"" + path + "\"");
+                rightcommondkey.SetValue("MUIVerb", info);
+                rightcommondkey.SetValue("Position", string.Empty);
+                rightcommondkey.SetValue("SeparatorAfter", string.Empty);
+                rightcommondkey.SetValue("SeparatorBefore", string.Empty);
+                RegistryKey associatedprogramkey = rightcommondkey.CreateSubKey("command");
+                associatedprogramkey.SetValue(string.Empty, "\"" + path + "\"");
+                associatedprogramkey.Close();
+                rightcommondkey.Close();
+                shell.Close();
                 return true;
             }
             catch (Exception exception)
             {
                 lusterror = exception.Message;
                 return false;
-                // throw;
             }
         }
     }

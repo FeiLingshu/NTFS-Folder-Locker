@@ -1,22 +1,20 @@
-﻿// 引用基础命名空间
-using Microsoft.VisualBasic.Devices;
+﻿using Microsoft.VisualBasic.Devices;
+using NTFS_Folder_Locker.functions;
+using NTFS_Folder_Locker.functions.customfunc;
+using NTFS_Folder_Locker.moreform;
+using NTFS_Folder_Locker.Properties;
+using NTFS_Folder_Locker.reportform;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-// 引用附加命名空间
-using NTFS_Folder_Locker.functions;
-using NTFS_Folder_Locker.functions.customfunc;
-using NTFS_Folder_Locker.reportform;
-// 引用公共属性命名空间
-using NTFS_Folder_Locker.Properties;
 
 namespace NTFS_Folder_Locker
 {
@@ -42,6 +40,8 @@ namespace NTFS_Folder_Locker
             picturebox_closebutton.MouseLeave += closebutton_out;
             label_path.HandleCreated += path_initialize;
             label_path.Paint += path_paint;
+            picturebox_morebutton.MouseEnter += morebutton_in;
+            picturebox_morebutton.MouseLeave += morebutton_out;
             label_break_01.Paint += breakline_paint;
             label_break_02.Paint += breakline_paint;
             label_password_tips.Paint += password_tips_paint;
@@ -65,13 +65,13 @@ namespace NTFS_Folder_Locker
             picturebox_icon.MouseClick += password_lostfocus;
             label_title.MouseClick += password_lostfocus;
             picturebox_closebutton.MouseClick += password_lostfocus;
+            picturebox_morebutton.MouseClick += password_lostfocus;
             label_break_01.MouseClick += password_lostfocus;
             label_detail_01.MouseClick += password_lostfocus;
             label_detail_02.MouseClick += password_lostfocus;
             label_detail_03.MouseClick += password_lostfocus;
             label_detail_04.MouseClick += password_lostfocus;
             label_detailinfo.MouseClick += password_lostfocus;
-            // picturebox_password.MouseClick += password_lostfocus;
             label_readme.MouseClick += password_lostfocus;
             panel_copyright.MouseClick += password_lostfocus;
             label_break_02.MouseClick += password_lostfocus;
@@ -81,6 +81,7 @@ namespace NTFS_Folder_Locker
             // 窗口按键功能绑定
             picturebox_closebutton.MouseClick += closebutton_click;
             label_copyright.KeyUp += closebutton_esc;
+            picturebox_morebutton.MouseClick += morebutton_click;
             textbox_password.KeyPress += password_keypress;
             textbox_password.KeyDown += password_keydown;
             textbox_password.KeyUp += password_keyUp;
@@ -144,10 +145,14 @@ namespace NTFS_Folder_Locker
         }
 
         // 当收到第二进程的通知时，响应消息
+        private bool canrestart = true;
         private void OnProgramStarted(object state, bool timeout)
         {
-            d_restart drs = new d_restart(mainform_restart);
-            Invoke(drs);
+            if (canrestart)
+            {
+                d_restart drs = new d_restart(mainform_restart);
+                Invoke(drs);
+            }
         }
         #endregion
 
@@ -194,12 +199,10 @@ namespace NTFS_Folder_Locker
         // 初始化窗口停靠位置
         private void setpztion(object sender, EventArgs e)
         {
-            Point lction = 
-                new Point(
-                    Screen.PrimaryScreen.WorkingArea.Left + 8,
-                    Screen.PrimaryScreen.WorkingArea.Top
-                    + Screen.PrimaryScreen.WorkingArea.Height
-                    - this.Height - 32);
+            Rectangle screen = Screen.PrimaryScreen.WorkingArea;
+            Point lction = new Point(
+                screen.Left + screen.Width / 32,
+                screen.Top + (screen.Height - this.Height) / 3 * 2);
             this.Location = lction;
         }
         // 绘制标题文本
@@ -251,6 +254,17 @@ namespace NTFS_Folder_Locker
                 new SolidBrush(label_path.ForeColor),
                 new Rectangle(Point.Empty, label_path.Size),
                 sf);
+        }
+        // 关闭按钮特效
+        private void morebutton_in(object sender, EventArgs e)
+        {
+            picturebox_morebutton.Image = Resources.more_dark;
+            picturebox_morebutton.BackColor = Color.FromArgb(0xFF, 0xE3, 0xE3, 0xE3);
+        }
+        private void morebutton_out(object sender, EventArgs e)
+        {
+            picturebox_morebutton.Image = Resources.more;
+            picturebox_morebutton.BackColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
         }
         // 绘制分割线
         private void breakline_paint(object sender, PaintEventArgs e)
@@ -448,6 +462,82 @@ namespace NTFS_Folder_Locker
                 this.Close();
             }
         }
+        // 点击更多按钮进入多选状态
+        private void morebutton_click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                canrestart = false;
+                more moreform = new more();
+                moreform.ShowDialog(this);
+                if (psinfo != null && psinfo.Count != 0)
+                {
+                    label_detail_01.BackColor = this.BackColor;
+                    label_detail_01.ForeColor = this.ForeColor;
+                    label_detail_01.Text = "路径合法性检查：未知";
+                    label_detail_02.BackColor = this.BackColor;
+                    label_detail_02.ForeColor = this.ForeColor;
+                    label_detail_02.Text = "目标状态：未知";
+                    label_detail_03.BackColor = this.BackColor;
+                    label_detail_03.ForeColor = this.ForeColor;
+                    label_detail_03.Text = "密钥匹配：未知";
+                    label_detail_04.BackColor = this.BackColor;
+                    label_detail_04.ForeColor = this.ForeColor;
+                    label_detail_04.Text = "自动操作信息：未知";
+                    label_detailinfo.Text =
+                        string.Format("日志信息：\n—— {0}\n—— {1}...",
+                        "Code_0b0000",
+                        "暂无错误信息");
+                    path_string = "路径：-";
+                    label_path.Invalidate();
+                    Thread t = new Thread((object _) =>
+                    {
+                        resetstate reset;
+                        Thread.Sleep(200);
+                        reset = new resetstate(() =>
+                        {
+                            label_detail_03.BackColor = this.BackColor;
+                            label_detail_03.ForeColor = this.ForeColor;
+                            label_detail_03.Text = "密钥匹配：未知";
+                            label_detail_04.BackColor = this.BackColor;
+                            label_detail_04.ForeColor = this.ForeColor;
+                            label_detail_04.Text = "自动操作信息：未知";
+                        });
+                        Invoke(reset);
+                        Thread.Sleep(200);
+                        reset = new resetstate(() =>
+                        {
+                            label_detail_01.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
+                            label_detail_01.BackColor = Color.FromArgb(0xFF, 0x15, 0xAE, 0x67);
+                            label_detail_01.Text = "路径合法性检查：路径合法";
+                        });
+                        Invoke(reset);
+                        Thread.Sleep(200);
+                        reset = new resetstate(() =>
+                        {
+                            label_detail_02.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
+                            label_detail_02.BackColor = Color.FromArgb(0xFF, 0x00, 0x76, 0xA9);
+                            label_detail_02.Text = "目标状态：混合";
+                        });
+                        Invoke(reset);
+                        Thread.Sleep(200);
+                        reset = new resetstate(() =>
+                        {
+                            label_detailinfo.Text = "日志信息：\n—— Code_0bxxxx\n—— 具体信息详情未知...";
+                            picturebox_morebutton.Enabled = true;
+                            panel_password.Enabled = true;
+                            picturebox_password.Enabled = true;
+                            textbox_password.Focus();
+                            this.Handle.bringtotop(this.TopMost);
+                        });
+                        Invoke(reset);
+                        canrestart = true;
+                    });
+                    t.Start();
+                }
+                else canrestart = true;
+            }
+        }
         // 重写密钥输入框的Enter键和Esc键行为
         private void password_keypress(object sender, KeyPressEventArgs e)
         {
@@ -501,12 +591,88 @@ namespace NTFS_Folder_Locker
                 panel_password.Enabled = true;
                 picturebox_password.Enabled = true;
             }
-            else startentry_alpha();
+            else
+            {
+                if (Program.args.Length == 0)
+                {
+                    canrestart = false;
+                    more moreform = new more();
+                    moreform.ShowDialog(this);
+                    if (psinfo != null && psinfo.Count != 0)
+                    {
+                        label_detail_01.BackColor = this.BackColor;
+                        label_detail_01.ForeColor = this.ForeColor;
+                        label_detail_01.Text = "路径合法性检查：未知";
+                        label_detail_02.BackColor = this.BackColor;
+                        label_detail_02.ForeColor = this.ForeColor;
+                        label_detail_02.Text = "目标状态：未知";
+                        label_detail_03.BackColor = this.BackColor;
+                        label_detail_03.ForeColor = this.ForeColor;
+                        label_detail_03.Text = "密钥匹配：未知";
+                        label_detail_04.BackColor = this.BackColor;
+                        label_detail_04.ForeColor = this.ForeColor;
+                        label_detail_04.Text = "自动操作信息：未知";
+                        label_detailinfo.Text =
+                            string.Format("日志信息：\n—— {0}\n—— {1}...",
+                            "Code_0b0000",
+                            "暂无错误信息");
+                        path_string = "路径：-";
+                        label_path.Invalidate();
+                        Thread t = new Thread((object _) =>
+                        {
+                            resetstate reset;
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detail_03.BackColor = this.BackColor;
+                                label_detail_03.ForeColor = this.ForeColor;
+                                label_detail_03.Text = "密钥匹配：未知";
+                                label_detail_04.BackColor = this.BackColor;
+                                label_detail_04.ForeColor = this.ForeColor;
+                                label_detail_04.Text = "自动操作信息：未知";
+                            });
+                            Invoke(reset);
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detail_01.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
+                                label_detail_01.BackColor = Color.FromArgb(0xFF, 0x15, 0xAE, 0x67);
+                                label_detail_01.Text = "路径合法性检查：路径合法";
+                            });
+                            Invoke(reset);
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detail_02.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
+                                label_detail_02.BackColor = Color.FromArgb(0xFF, 0x00, 0x76, 0xA9);
+                                label_detail_02.Text = "目标状态：混合";
+                            });
+                            Invoke(reset);
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detailinfo.Text = "日志信息：\n—— Code_0bxxxx\n—— 具体信息详情未知...";
+                                picturebox_morebutton.Enabled = true;
+                                panel_password.Enabled = true;
+                                picturebox_password.Enabled = true;
+                                textbox_password.Focus();
+                                this.Handle.bringtotop(this.TopMost);
+                            });
+                            Invoke(reset);
+                            canrestart = true;
+                        });
+                        t.Start();
+                    }
+                    else canrestart = true;
+                }
+                else startentry_alpha();
+            }
         }
         private void startentry_alpha()
         {
             if (thread_pathcheck != null && thread_pathcheck.IsAlive)
                 thread_pathcheck.Abort();
+            picturebox_morebutton.Enabled = false;
             thread_pathcheck = new Thread(check_path);
             threadrunning = true;
             thread_pathcheck.Start();
@@ -535,6 +701,7 @@ namespace NTFS_Folder_Locker
                     "暂无错误信息");
             textbox_password.Text = null;
             checkbox_password.CheckState = CheckState.Unchecked;
+            picturebox_morebutton.Enabled = true;
             panel_password.Enabled = false;
             picturebox_password.Enabled = false;
             // 启动自动化序列
@@ -544,18 +711,111 @@ namespace NTFS_Folder_Locker
                     string.Format("日志信息：\n—— {0}\n—— {1}...",
                     "Code_0b1111",
                     "当前模式为调试模式");
+                picturebox_morebutton.Enabled = true;
                 panel_password.Enabled = true;
                 picturebox_password.Enabled = true;
             }
-            else startentry_alpha();
+            else
+            {
+                if (Program.args.Length == 0)
+                {
+                    canrestart = false;
+                    more moreform = new more();
+                    moreform.ShowDialog(this);
+                    if (psinfo != null && psinfo.Count != 0)
+                    {
+                        label_detail_01.BackColor = this.BackColor;
+                        label_detail_01.ForeColor = this.ForeColor;
+                        label_detail_01.Text = "路径合法性检查：未知";
+                        label_detail_02.BackColor = this.BackColor;
+                        label_detail_02.ForeColor = this.ForeColor;
+                        label_detail_02.Text = "目标状态：未知";
+                        label_detail_03.BackColor = this.BackColor;
+                        label_detail_03.ForeColor = this.ForeColor;
+                        label_detail_03.Text = "密钥匹配：未知";
+                        label_detail_04.BackColor = this.BackColor;
+                        label_detail_04.ForeColor = this.ForeColor;
+                        label_detail_04.Text = "自动操作信息：未知";
+                        label_detailinfo.Text =
+                            string.Format("日志信息：\n—— {0}\n—— {1}...",
+                            "Code_0b0000",
+                            "暂无错误信息");
+                        path_string = "路径：-";
+                        label_path.Invalidate();
+                        Thread t = new Thread((object _) =>
+                        {
+                            resetstate reset;
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detail_03.BackColor = this.BackColor;
+                                label_detail_03.ForeColor = this.ForeColor;
+                                label_detail_03.Text = "密钥匹配：未知";
+                                label_detail_04.BackColor = this.BackColor;
+                                label_detail_04.ForeColor = this.ForeColor;
+                                label_detail_04.Text = "自动操作信息：未知";
+                            });
+                            Invoke(reset);
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detail_01.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
+                                label_detail_01.BackColor = Color.FromArgb(0xFF, 0x15, 0xAE, 0x67);
+                                label_detail_01.Text = "路径合法性检查：路径合法";
+                            });
+                            Invoke(reset);
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detail_02.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
+                                label_detail_02.BackColor = Color.FromArgb(0xFF, 0x00, 0x76, 0xA9);
+                                label_detail_02.Text = "目标状态：混合";
+                            });
+                            Invoke(reset);
+                            Thread.Sleep(200);
+                            reset = new resetstate(() =>
+                            {
+                                label_detailinfo.Text = "日志信息：\n—— Code_0bxxxx\n—— 具体信息详情未知...";
+                                picturebox_morebutton.Enabled = true;
+                                panel_password.Enabled = true;
+                                picturebox_password.Enabled = true;
+                                textbox_password.Focus();
+                                this.Handle.bringtotop(this.TopMost);
+                            });
+                            Invoke(reset);
+                            canrestart = true;
+                        });
+                        t.Start();
+                    }
+                    else canrestart = true;
+                }
+                else startentry_alpha();
+            }
         }
         // 自动启动操作执行序列
         private void startentry_beta(object sender, MouseEventArgs e)
         {
+            if (Program.is_debugmode) return;
             if (e.Button == MouseButtons.Left)
             {
+                if (psinfo != null && psinfo.Count != 0)
+                {
+                    canrestart = false;
+                    picturebox_morebutton.Enabled = false;
+                    panel_password.Enabled = false;
+                    picturebox_password.Enabled = false;
+                    password_code = textbox_password.Text.SHA512_code();
+                    if (thread_pathsrecode != null && thread_pathsrecode.IsAlive)
+                        thread_pathsrecode.Abort();
+                    thread_pathsrecode = new Thread(recode_paths);
+                    threadrunning = true;
+                    thread_pathsrecode.Start();
+                    return;
+                }
                 if (textbox_password.Text == null || textbox_password.Text == string.Empty)
                     return;
+                canrestart = false;
+                picturebox_morebutton.Enabled = false;
                 panel_password.Enabled = false;
                 picturebox_password.Enabled = false;
                 password_code = textbox_password.Text.SHA512_code();
@@ -566,13 +826,96 @@ namespace NTFS_Folder_Locker
                 thread_pathrecode.Start();
             }
         }
+
+        internal struct pathsinfo
+        {
+            internal bool islocked;
+            internal string path;
+            internal pathsinfo(bool _islocked, string _path)
+            {
+                islocked = _islocked;
+                path = _path;
+            }
+        }
+        internal List<pathsinfo> psinfo = new List<pathsinfo>();
+        internal List<string> errorpath = new List<string>();
+        private delegate void resetstate();
+        private delegate void writeunknown();
+        private Thread thread_pathsrecode = null;
+        private void recode_paths(object e)
+        {
+            resetstate rstate = new resetstate(() =>
+            {
+                label_detail_03.BackColor = this.BackColor;
+                label_detail_03.ForeColor = this.ForeColor;
+                label_detail_03.Text = "密钥匹配：未知";
+                label_detail_04.BackColor = this.BackColor;
+                label_detail_04.ForeColor = this.ForeColor;
+                label_detail_04.Text = "自动操作信息：未知";
+            });
+            for (int i = 0; i < psinfo.Count; i++)
+            {
+                // 重置回显状态
+                Thread.Sleep(200);
+                Invoke(rstate);
+                // 设置全局标志
+                is_locked = psinfo[i].islocked;
+                // 初始化状态bool变量
+                bool ischecked = true;
+                // 加载路径字符串
+                string pathstring = psinfo[i].path;
+                // 密钥检查
+                runstateinfo rsinfo_p = passwordcheck(pathstring, password_code);
+                Thread.Sleep(200);
+                d_setpassword dsp = new d_setpassword(_setpassword);
+                Invoke(dsp, rsinfo_p);
+                ischecked = rsinfo_p.state;
+                if (!ischecked)
+                {
+                    errorpath.Add(pathstring);
+                    continue;
+                }
+                // 检查目录可用性并执行相关操作
+                runstateinfo rsinfo_r = recodedirectory(pathstring, password_code);
+                Thread.Sleep(200);
+                d_setrunreport dsrr = new d_setrunreport(_setrunreport);
+                Invoke(dsrr, rsinfo_r);
+                ischecked = rsinfo_r.state;
+                if (!ischecked)
+                {
+                    errorpath.Add(pathstring);
+                    continue;
+                }
+                // 更新全局缓存
+                System.Collections.Specialized.StringCollection stringc = Settings.Default.paths;
+                if (psinfo[i].islocked)
+                {
+                    stringc[i] = Regex.Replace(stringc[i], guid_directory + "*$", string.Empty);
+                }
+                else
+                {
+                    stringc[i] = stringc[i] + guid_directory;
+                }
+                Settings.Default.paths = stringc;
+                Settings.Default.Save();
+            }
+            // 执行后续操作
+            writeunknown wunknown = new writeunknown(() =>
+            {
+                label_detailinfo.Text = "日志信息：\n—— Code_0bxxxx\n—— 具体信息详情未知...";
+            });
+            Invoke(wunknown);
+            d_setctrl_beta dscb = new d_setctrl_beta(_setctrl_beta);
+            Invoke(dscb, errorpath.Count == 0);
+            threadrunning = false;
+        }
         #endregion
 
         #region 主功能所需值
         // 用于实现主要功能的windows注册表Guid
         private const string guid_directory = ".{00021401-0000-0000-C000-000000000046}";
         // 用于保存操作结果参数的结构体
-        private struct runstateinfo
+        internal struct runstateinfo
         {
             internal string path;
             internal bool state;
@@ -598,14 +941,12 @@ namespace NTFS_Folder_Locker
         private Thread thread_pathcheck = null;
         private void check_path(object e)
         {
-            // 初始化等待时间随机数
-            Random r = new Random();
             // 初始化状态bool变量
             bool ischecked = true;
             // 检查路径
             string[] pathargs = Program.args;
             runstateinfo rsinfo = pathcheck(pathargs);
-            Thread.Sleep(r.Next(200, 801));
+            Thread.Sleep(200);
             d_setpath dsp = new d_setpath(_setpath);
             Invoke(dsp, rsinfo.path);
             d_setpathinfo dspi = new d_setpathinfo(_setpathinfo);
@@ -613,7 +954,7 @@ namespace NTFS_Folder_Locker
             ischecked = rsinfo.state;
             if (!ischecked) goto abort;
             // 检查状态
-            Thread.Sleep(r.Next(200, 801));
+            Thread.Sleep(200);
             d_setstateinfo dssi = new d_setstateinfo(_setstateinfo);
             Invoke(dssi, pathstate(rsinfo.path));
             ischecked = rsinfo.state;
@@ -636,10 +977,10 @@ namespace NTFS_Folder_Locker
         private void _setpathinfo(runstateinfo rsinfo)
         {
             label_detail_01.ForeColor = Color.FromArgb(0xFF, 0x20, 0x20, 0x20);
-            label_detail_01.BackColor = (rsinfo.state)
+            label_detail_01.BackColor = rsinfo.state
                 ? Color.FromArgb(0xFF, 0x15, 0xAE, 0x67)
                 : Color.FromArgb(0xFF, 0xE8, 0x11, 0x20);
-            label_detail_01.Text = (rsinfo.state)
+            label_detail_01.Text = rsinfo.state
                 ? "路径合法性检查：路径合法"
                 : "路径合法性检查：路径非法";
             label_detailinfo.Text = 
@@ -668,40 +1009,72 @@ namespace NTFS_Folder_Locker
         private delegate void d_setctrl_alpha(bool state);
         private void _setctrl_alpha(bool state)
         {
+            picturebox_morebutton.Enabled = true;
             panel_password.Enabled = state;
             picturebox_password.Enabled = state;
             if (state) textbox_password.Focus();
             this.Handle.bringtotop(this.TopMost);
         }
         // 路径检查内部方法
-        private runstateinfo pathcheck(string[] args)
+        internal runstateinfo pathcheck(string[] args)
         {
-            if (args.Length != 1)
+            if (args.Length == 0)
                 return new runstateinfo(null, false, "Code_0b0001", "路径不能为空");
-            string path = (args[0].Substring(args.Length - 1, 1) == "\"")
-                ? args[0].Substring(0, args.Length - 1) + "\\"
-                : args[0];
+            string path = string.Empty;
+            if (args[0].Length >= 2)
+            {
+                path = (args[0].Substring(args[0].Length - 2, 2) == ":\"")
+                    ? args[0].Substring(0, args[0].Length - 2) + ":\\"
+                    : args[0];
+            }
             if (!Directory.Exists(path))
                 return new runstateinfo(null, false, "Code_0b0010", "路径不存在");
             if (new DriveInfo(path.Substring(0, 1)).DriveFormat.ToUpper() != "NTFS")
                 return new runstateinfo(null, false, "Code_0b0011", "路径不能为非NTFS结构");
             if (new DirectoryInfo(path).Parent == null)
                 return new runstateinfo(null, false, "Code_0b0100", "路径不能为磁盘根目录");
-            if (path.Substring(0, 2) == Environment.GetEnvironmentVariable("systemdrive"))
-            {
-                if (path.IndexOf(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    StringComparison.OrdinalIgnoreCase) < 0)
-                    return new runstateinfo(null, false, "Code_0b0101", "路径不能执行操作");
-            }
-            if (Application.ExecutablePath.IndexOf(path,
-                StringComparison.OrdinalIgnoreCase) >= 0)
+            if (!path_matched(path)) return new runstateinfo(null, false, "Code_0b0101", "路径不能执行操作");
+            if (Application.ExecutablePath.IndexOf(path, StringComparison.OrdinalIgnoreCase) == 0)
                 return new runstateinfo(null, false, "Code_0b0101", "路径不能执行操作");
             return new runstateinfo(path, true, "Code_0b0000", "暂无错误信息");
         }
-        // 状态检查内部方法
-        private string pathstate(string path)
+        // 匹配合法文件夹
+        private bool path_matched(string path)
         {
-            Debug.Print(path + "\\" + "PASSWORD".MD5_code());
+            // Program Files & Program Files (x86)
+            if (Environment.Is64BitOperatingSystem)
+            {
+                if (path.IndexOf(Environment.GetEnvironmentVariable("ProgramW6432"),
+                    StringComparison.OrdinalIgnoreCase) == 0) return false;
+                if (path.IndexOf(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    StringComparison.OrdinalIgnoreCase) == 0) return false;
+            }
+            else
+            {
+                if (path.IndexOf(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    StringComparison.OrdinalIgnoreCase) == 0) return false;
+            }
+            // ProgramData
+            if (path.IndexOf(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                StringComparison.OrdinalIgnoreCase) == 0) return false;
+            // Windows
+            if (path.IndexOf(Environment.GetFolderPath(Environment.SpecialFolder.Windows),
+                StringComparison.OrdinalIgnoreCase) == 0) return false;
+            // User
+            if (path.IndexOf(Path.GetDirectoryName(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)),
+                StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                // Desktop
+                string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                if (path != desktop && path.IndexOf(desktop, StringComparison.OrdinalIgnoreCase) == 0)
+                    return true;
+                return false;
+            }
+            return true;
+        }
+        // 状态检查内部方法
+        internal string pathstate(string path)
+        {
             if (File.Exists(path + "\\" + "PASSWORD".MD5_code()))
                 return "已锁定";
             else return "未锁定";
@@ -713,22 +1086,20 @@ namespace NTFS_Folder_Locker
         private Thread thread_pathrecode = null;
         private void recode_path(object e)
         {
-            // 初始化等待时间随机数
-            Random r = new Random();
             // 初始化状态bool变量
             bool ischecked = true;
             // 加载路径字符串
             string pathstring = Program.args[0];
             // 密钥检查
             runstateinfo rsinfo_p = passwordcheck(pathstring, password_code);
-            Thread.Sleep(r.Next(200, 801));
+            Thread.Sleep(200);
             d_setpassword dsp = new d_setpassword(_setpassword);
             Invoke(dsp, rsinfo_p);
             ischecked = rsinfo_p.state;
             if (!ischecked) goto abort;
             // 检查目录可用性并执行相关操作
             runstateinfo rsinfo_r = recodedirectory(pathstring, password_code);
-            Thread.Sleep(r.Next(200, 801));
+            Thread.Sleep(200);
             d_setrunreport dsrr = new d_setrunreport(_setrunreport);
             Invoke(dsrr, rsinfo_r);
             ischecked = rsinfo_r.state;
@@ -774,6 +1145,7 @@ namespace NTFS_Folder_Locker
         {
             textbox_password.Text = null;
             checkbox_password.CheckState = CheckState.Unchecked;
+            picturebox_morebutton.Enabled = !state;
             panel_password.Enabled = !state;
             picturebox_password.Enabled = !state;
             if (!state) textbox_password.Focus();
@@ -785,8 +1157,17 @@ namespace NTFS_Folder_Locker
             reportform.button_ok.FlatAppearance.MouseOverBackColor = (state)
                 ? Color.FromArgb(0xFF, 0x15, 0xAE, 0x67)
                 : Color.FromArgb(0xFF, 0xE8, 0x11, 0x20);
+            string errorstring = (psinfo == null || psinfo.Count == 0)
+                ? ((Program.args == null || Program.args.Length == 0) ? "未获取到发生错误的目标..." : Program.args[0])
+                : ((errorpath == null || errorpath.Count == 0) ? "未获取到发生错误的目标..." : string.Join("\n", errorpath));
+            reportform.tooltip.SetToolTip(reportform.picturebox_tips,
+                (state) ? "未发生任何错误..." : errorstring);
             reportform.ShowDialog(this);
-            if (!state) textbox_password.Focus(); // 为防止焦点由于异常无法转移，重复执行
+            if (!state)
+            {
+                canrestart = true;
+                textbox_password.Focus(); // 为防止焦点由于异常无法转移，重复执行
+            }
             threadrunning = false;
             if (state) Close();
         }
@@ -810,7 +1191,6 @@ namespace NTFS_Folder_Locker
                     sr.Close(); sr.Dispose();
                     fs.Close(); fs.Dispose();
                     return new runstateinfo(path, false, "Code_0b0110", "无法读取密钥缓存文件");
-                    // throw;
                 }
                 sr.Close(); sr.Dispose();
                 fs.Close(); fs.Dispose();
@@ -833,10 +1213,24 @@ namespace NTFS_Folder_Locker
                     return new runstateinfo(path, false, "Code_0b1101", "访问目标文件夹被拒绝");
                 if (!ntfs_locker.decode(path))
                     return new runstateinfo(path, false, "Code_0b1110", "MAR权限设置异常(未知错误)");
-                File.Delete(path + "\\" + "PASSWORD".MD5_code());
-                DirectoryInfo di = new DirectoryInfo(path);
-                string name = Regex.Replace(di.Name, guid_directory + "*$", string.Empty);
-                (new Computer()).FileSystem.RenameDirectory(path, name);
+                try
+                {
+                    File.Delete(path + "\\" + "PASSWORD".MD5_code());
+                }
+                catch (Exception)
+                {
+                    return new runstateinfo(path, true, "Code_0b1101", "访问目标文件夹被拒绝");
+                }
+                try
+                {
+                    DirectoryInfo di = new DirectoryInfo(path);
+                    string name = Regex.Replace(di.Name, guid_directory + "*$", string.Empty);
+                    (new Computer()).FileSystem.RenameDirectory(path, name);
+                }
+                catch (Exception)
+                {
+                    return new runstateinfo(path, true, "Code_0b1101", "访问目标文件夹被拒绝");
+                }
                 return new runstateinfo(path, true, "Code_0b0000", "暂无错误信息");
             }
             else
@@ -845,11 +1239,13 @@ namespace NTFS_Folder_Locker
                 bool decodetest = ntfs_locker.decodetest(path);
                 if (!(encodetest && decodetest))
                     return new runstateinfo(path, false, "Code_0b1101", "访问目标文件夹被拒绝");
-                FileStream fs = new FileStream(
-                path + "\\" + "PASSWORD".MD5_code(), FileMode.Create, FileAccess.Write);
-                StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
+                FileStream fs = null;
+                StreamWriter sw = null;
                 try
                 {
+                    fs = new FileStream(
+                        path + "\\" + "PASSWORD".MD5_code(), FileMode.Create, FileAccess.Write);
+                    sw = new StreamWriter(fs, new UTF8Encoding(false));
                     sw.Write(code_input);
                 }
                 catch (Exception)
@@ -857,12 +1253,18 @@ namespace NTFS_Folder_Locker
                     sw.Close(); sw.Dispose();
                     fs.Close(); fs.Dispose();
                     return new runstateinfo(path, false, "Code_0b1000", "无法创建密钥缓存文件");
-                    // throw;
                 }
                 sw.Close(); sw.Dispose();
                 fs.Close(); fs.Dispose();
-                (new Computer()).FileSystem.RenameDirectory(
-                    path, new DirectoryInfo(path).Name + guid_directory);
+                try
+                {
+                    (new Computer()).FileSystem.RenameDirectory(
+                        path, new DirectoryInfo(path).Name + guid_directory);
+                }
+                catch (Exception)
+                {
+                    return new runstateinfo(path, true, "Code_0b1101", "访问目标文件夹被拒绝");
+                }
                 if (!ntfs_locker.encode(path + guid_directory))
                     return new runstateinfo(path, false, "Code_0b1110", "MAR权限设置异常(未知错误)");
                 return new runstateinfo(path, true, "Code_0b0000", "暂无错误信息");

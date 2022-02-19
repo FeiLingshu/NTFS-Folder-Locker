@@ -122,6 +122,7 @@ namespace NTFS_Folder_Locker_Installer
 
         #region 智能安装检测
         // 智能安装检测
+        private bool needupdate = false; // 已安装且版本为不兼容旧版本时为true
         private void mainform_shown(object sender, EventArgs e)
         {
             if (!checkbox_delete.Enabled) return;
@@ -134,7 +135,8 @@ namespace NTFS_Folder_Locker_Installer
                 Version newpvers = new Version(FileVersionInfo.GetVersionInfo(Application.ExecutablePath).ProductVersion);
                 if (newfvers > oldfvers && newpvers > oldpvers)
                 {
-                    autoupdate form = new autoupdate();
+                    needupdate = true;
+                    autoupdate form = new autoupdate(needupdate);
                     form.label_info.Text = string.Format("安装程序检测到已经存在旧版本程序！是否覆盖安装新版本？"
                         + "\n旧版本号：{0}/{1}\n新版本号：{2}/{3}\n",
                         new string[4]
@@ -157,7 +159,7 @@ namespace NTFS_Folder_Locker_Installer
 
         #region 安装模块
         // 保存自定义安装路径的变量
-        string installpath = null;
+        private string installpath = null;
         // 选择安装路径
         private void setpath(object sender, MouseEventArgs e)
         {
@@ -214,6 +216,7 @@ namespace NTFS_Folder_Locker_Installer
         {
             if (e.Button == MouseButtons.Left)
             {
+                installer.needupdate = needupdate;
                 if (installpath == null || installpath == string.Empty)
                 {
                     tooltip.SetToolTip(label_state, null);
@@ -278,6 +281,7 @@ namespace NTFS_Folder_Locker_Installer
         {
             if (e.Button == MouseButtons.Left)
             {
+                installer.needupdate = needupdate;
                 bool report = installer.off("NTFS_Folder_Locker_Installer".MD5_code());
                 if (report)
                 {
@@ -422,7 +426,7 @@ namespace NTFS_Folder_Locker_Installer
                     threadcount = 0;
                     GC.Collect();
                 }
-                Thread.Sleep(7);
+                Thread.Sleep(1);
             } while (Thread.CurrentThread.IsAlive);
             MoveWindow(dialog_hwnd,
                 mainform_rect.X, mainform_rect.Y, mainform_rect.Width, mainform_rect.Height,
@@ -444,7 +448,7 @@ namespace NTFS_Folder_Locker_Installer
                     threadcount = 0;
                     GC.Collect();
                 }
-                Thread.Sleep(7);
+                Thread.Sleep(16);
             } while (Thread.CurrentThread.IsAlive);
         }
 

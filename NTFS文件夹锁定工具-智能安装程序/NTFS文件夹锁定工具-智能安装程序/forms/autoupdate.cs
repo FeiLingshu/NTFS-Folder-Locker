@@ -17,9 +17,11 @@ namespace NTFS_Folder_Locker_Installer.forms
     {
         #region 窗口内部过程
         // 窗口唯一入口函数
-        internal autoupdate()
+        internal autoupdate(bool needupdate)
         {
             InitializeComponent(); // 以默认方式初始化窗口类
+            // 同步额外操作指示
+            this.needupdate = needupdate;
             // 窗口位置同步绑定
             this.Shown += form_shown;
             this.FormClosing += form_formclosing;
@@ -79,7 +81,9 @@ namespace NTFS_Folder_Locker_Installer.forms
 
         #region 用户操作
         // 对话框返回值参数
-        DialogResult dr = DialogResult.Cancel;
+        private DialogResult dr = DialogResult.Cancel;
+        // 额外操作指示
+        private bool needupdate = false;
         // 响应确认按钮
         private void ok(object sender, MouseEventArgs e)
         {
@@ -96,11 +100,18 @@ namespace NTFS_Folder_Locker_Installer.forms
                     catch (Exception)
                     {
                         continue;
-                        // throw;
                     }
                 }
                 try
                 {
+                    if (needupdate)
+                    {
+                        if (!installer.overlay(
+                            "NTFS_Folder_Locker_Installer".MD5_code(),
+                            "锁定/解锁NTFS文件夹...",
+                            installer.lustpath))
+                            throw new NotImplementedException(installer.lusterror);
+                    }
                     FileStream fs = new FileStream(installer.lustpath, FileMode.Create, FileAccess.Write);
                     fs.Write(Resources.mainapp, 0, Resources.mainapp.Length);
                     fs.Close(); fs.Dispose();
@@ -115,7 +126,6 @@ namespace NTFS_Folder_Locker_Installer.forms
                     button_cancel.Text = "— 取消 —";
                     msgbeep.beep(msgbeep.uType.MB_ICONEXCLAMATION);
                     return;
-                    // throw;
                 }
                 label_state.Text = "— 操作完成，关闭窗口以退出 —";
                 label_state.ForeColor = Color.FromArgb(0xFF, 0x15, 0xAE, 0x67);

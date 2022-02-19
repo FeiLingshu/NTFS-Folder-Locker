@@ -38,3 +38,14 @@ C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁
 C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.exe
 C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
 C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csprojAssemblyReference.cache
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\bin\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.autoupdate.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.forms.updateinfo.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.MainForm.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS_Folder_Locker_Installer.Properties.Resources.resources
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.GenerateResource.cache
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.CoreCompileInputs.cache
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.exe
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.pdb
+D:\临时备份项目\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-智能安装程序\NTFS文件夹锁定工具-智能安装程序\obj\Debug\NTFS文件夹锁定工具-智能安装程序.csproj.AssemblyReference.cache
