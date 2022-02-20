@@ -1,0 +1,9 @@
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\bin\Debug\NTFS文件夹锁定工具-HotfixTool.exe
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\bin\Debug\NTFS文件夹锁定工具-HotfixTool.pdb
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS_Folder_Locker_HotfixTool.MainForm.resources
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS_Folder_Locker_HotfixTool.Properties.Resources.resources
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS文件夹锁定工具-HotfixTool.csproj.GenerateResource.cache
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS文件夹锁定工具-HotfixTool.csproj.CoreCompileInputs.cache
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS文件夹锁定工具-HotfixTool.exe
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS文件夹锁定工具-HotfixTool.pdb
+C:\Users\feilingshu\Desktop\NTFS文件夹锁定工具-源代码\NTFS文件夹锁定工具-HotfixTool\NTFS文件夹锁定工具-HotfixTool\obj\Debug\NTFS文件夹锁定工具-HotfixTool.csproj.AssemblyReference.cache
